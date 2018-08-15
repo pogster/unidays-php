@@ -20,9 +20,9 @@ class TrackingHelper
     private $tracking_script_url;
     private $test;
 
-    function __construct(DirectTrackingDetails $DirectTrackingDetails, bool $test = false)
+    function __construct(DirectTrackingDetails $directTrackingDetails, bool $test = false)
     {
-        $this->directTrackingDetails = $DirectTrackingDetails;
+        $this->directTrackingDetails = $directTrackingDetails;
 
         if (empty($this->directTrackingDetails->partnerId))
             throw new \InvalidArgumentException('PartnerId is required');
@@ -39,14 +39,43 @@ class TrackingHelper
         $this->tracking_script_url = $this->tracking_url . '/js';
     }
 
-    private function url_encode_number($number)
+    /**
+     * Generates the Server-to-Server Redemption Tracking URL
+     *
+     * @param string $key The key for the signature
+     * @return string The URL to make a server-to-server request to
+     */
+    public function create_server_url($key)
     {
-        return urlencode(number_format($number, 2, '.', ','));
+        return $this->generate_signed_url($this->tracking_url, $key);
     }
 
-    private function parse_boolean($bool)
+    /**
+     * Generates the signed Redemption Tracking URL
+     *
+     * @param string $key The key for the signature
+     * @return string The signed URL to be placed inside a <script /> element in your receipt page. A JSON body will be returned detailing errors, if any
+     */
+    public function create_signed_script_url($key)
     {
-        return rawurlencode($bool ? 'True' : 'False');
+        return $this->generate_signed_url($this->tracking_script_url, $key);
+    }
+
+    private function generate_signed_url($base_url, $key)
+    {
+        $query = $this->generate_query();
+        return $this->generate_url($base_url, $query) . $this->generate_signature_parameter($query, $key);
+    }
+
+    /**
+     * Generates the Redemption Tracking URL
+     *
+     * @return string The URL to be placed inside a <script /> element in your receipt page. A JSON body will be returned detailing errors, if any
+     */
+    public function create_script_url()
+    {
+        $query = $this->generate_query();
+        return $this->generate_url($this->tracking_script_url, $query);
     }
 
     private function generate_query()
@@ -67,68 +96,32 @@ class TrackingHelper
             . '&NewCustomer=' . ($this->directTrackingDetails->newCustomer ? $this->parse_boolean($this->directTrackingDetails->newCustomer) : '');
     }
 
-    private function hash_query($query, $key)
+    private function url_encode_number($number)
     {
-        return urlencode(base64_encode(hash_hmac("sha512", $query, base64_decode($key), true)));
+        return urlencode(number_format($number, 2, '.', ','));
     }
 
-    private function append_test_parameter($url)
+    private function parse_boolean($bool)
     {
-        return $url .= '&Test=True';
+        return rawurlencode($bool ? 'True' : 'False');
     }
 
-    /**
-     * Generates the Server-to-Server Redemption Tracking URL
-     *
-     * @param string $key The key for the signature
-     * @return string The URL to make a server-to-server request to
-     */
-    public function create_server_url($key)
+    private function generate_url($base_url, $query)
     {
-        $query = $this->generate_query();
-        $hash = $this->hash_query($query, $key);
-
-        $url = $this->tracking_url . $query . '&Signature=' . $hash;
-
-        if ($this->test)
-            $url = $this->append_test_parameter($url);
-
-        return $url;
+        return $base_url . $query . $this->generate_test_parameter();
     }
 
-    /**
-     * Generates the Redemption Tracking URL
-     *
-     * @return string The URL to be placed inside a <script /> element in your receipt page. A JSON body will be returned detailing errors, if any
-     */
-    public function create_script_url()
+    private function generate_test_parameter()
     {
-        $query = $this->generate_query();
-
-        $url = $this->tracking_script_url . $query;
-
-        if ($this->test)
-            $url = $this->append_test_parameter($url);
-
-        return $url;
+        return ($this->test)
+            ? '&Test=True'
+            : '';
     }
 
-    /**
-     * Generates the signed Redemption Tracking URL
-     *
-     * @param string $key The key for the signature
-     * @return string The signed URL to be placed inside a <script /> element in your receipt page. A JSON body will be returned detailing errors, if any
-     */
-    public function create_signed_script_url($key)
+    private function generate_signature_parameter($query, $key)
     {
-        $query = $this->generate_query();
-        $hash = $this->hash_query($query, $key);
+        $hash = urlencode(base64_encode(hash_hmac("sha512", $query, base64_decode($key), true)));
 
-        $url = $this->tracking_script_url . $query . '&Signature=' . $hash;
-
-        if ($this->test)
-            $url = $this->append_test_parameter($url);
-
-        return $url;
+        return '&Signature=' . $hash;
     }
 }
