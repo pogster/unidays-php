@@ -1,0 +1,12 @@
+language: php
+php:
+- '5.5'
+- '5.4'
+- '5.3'
+script: phpunit
+before_install:
+  - composer self-update
+install: composer install
+  on:
+    branch: master
+    php: '5.5'
