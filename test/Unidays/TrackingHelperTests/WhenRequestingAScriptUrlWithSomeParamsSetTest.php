@@ -27,7 +27,7 @@ class WhenRequestingAScriptUrlWithSomeParamsSetTest extends \PHPUnit_Framework_T
     /**
      * @test
      */
-    public function TheHostShouldBeApiMyunidaysCom()
+    public function TheHostShouldBeCorrect()
     {
         $host = parse_url($this->url, PHP_URL_HOST);
         $this->assertEquals('api.myunidays.com', $host);
@@ -36,7 +36,7 @@ class WhenRequestingAScriptUrlWithSomeParamsSetTest extends \PHPUnit_Framework_T
     /**
      * @test
      */
-    public function ThePathShouldBeV1_2RedmeptionJs()
+    public function ThePathShouldBeV1_2RedemptionJs()
     {
         $path = parse_url($this->url, PHP_URL_PATH);
         $this->assertEquals('/tracking/v1.2/redemption/js', $path);

@@ -20,7 +20,7 @@ class TrackingHelper
     private $tracking_script_url;
     private $test;
 
-    function __construct(DirectTrackingDetails $directTrackingDetails, bool $test = false)
+    function __construct(DirectTrackingDetails $directTrackingDetails, $test = null)
     {
         $this->directTrackingDetails = $directTrackingDetails;
 
@@ -33,7 +33,7 @@ class TrackingHelper
         if (empty($this->directTrackingDetails->transactionId))
             throw new \InvalidArgumentException('TransactionId is required');
 
-        $this->test = $test;
+        $this->test = isset($test) && is_bool($test) ? $test : false;
 
         $this->tracking_url = 'https://api.myunidays.com/tracking/v1.2/redemption';
         $this->tracking_script_url = $this->tracking_url . '/js';
