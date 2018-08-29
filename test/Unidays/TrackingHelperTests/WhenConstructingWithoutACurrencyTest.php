@@ -7,10 +7,7 @@ class WhenConstructingWithoutACurrencyTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @param $currency
-     *
-     * @testWith    [""]
-     *              [null]
+     * @dataProvider invalidInputs
      *
      * @expectedException InvalidArgumentException
      */
@@ -20,5 +17,13 @@ class WhenConstructingWithoutACurrencyTest extends \PHPUnit_Framework_TestCase
         $builtDetails = $details->build();
 
         new TrackingHelper($builtDetails);
+    }
+
+    public function invalidInputs()
+    {
+        return array(
+            array(""),
+            array(null)
+        );
     }
 }

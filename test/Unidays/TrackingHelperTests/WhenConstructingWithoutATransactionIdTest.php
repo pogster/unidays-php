@@ -7,10 +7,7 @@ class WhenConstructingWithoutATransactionIdTest extends \PHPUnit_Framework_TestC
     /**
      * @test
      *
-     * @param $transactionId
-     *
-     * @testWith    [""]
-     *              [null]
+     * @dataProvider invalidInputs
      *
      * @expectedException InvalidArgumentException
      */
@@ -20,5 +17,13 @@ class WhenConstructingWithoutATransactionIdTest extends \PHPUnit_Framework_TestC
         $builtDetails = $details->build();
 
         new TrackingHelper($builtDetails);
+    }
+
+    public function invalidInputs()
+    {
+        return array(
+            array(""),
+            array(null)
+        );
     }
 }

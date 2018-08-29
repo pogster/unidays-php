@@ -7,10 +7,7 @@ class WhenConstructingWithAnInvalidPartnerIdTest extends \PHPUnit_Framework_Test
     /**
      * @test
      *
-     * @param $partnerId
-     *
-     * @testWith    [""]
-     *              [null]
+     * @dataProvider invalidInputs
      *
      * @expectedException InvalidArgumentException
      */
@@ -20,5 +17,13 @@ class WhenConstructingWithAnInvalidPartnerIdTest extends \PHPUnit_Framework_Test
         $builtDetails = $details->build();
 
         new TrackingHelper($builtDetails);
+    }
+
+    public function invalidInputs()
+    {
+        return array(
+            array(""),
+            array(null)
+        );
     }
 }

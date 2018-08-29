@@ -13,4 +13,3 @@ matrix:
 
 install:
   - composer install --no-dev
-  - phpunit --version
