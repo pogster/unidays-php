@@ -2,9 +2,7 @@
 
 namespace Unidays;
 
-use PHPUnit\Framework\TestCase;
-
-class WhenRequestingAScriptUrlWithSomeParamsSetTest extends TestCase
+class WhenRequestingAScriptUrlWithSomeParamsSetTest extends \PHPUnit_Framework_TestCase
 {
     var $url;
 
