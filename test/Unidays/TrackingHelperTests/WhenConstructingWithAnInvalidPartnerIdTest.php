@@ -2,25 +2,28 @@
 
 namespace Unidays;
 
-use PHPUnit\Framework\TestCase;
-
-class WhenConstructingWithAnInvalidPartnerIdTest extends TestCase
+class WhenConstructingWithAnInvalidPartnerIdTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      *
-     * @param $partnerId
+     * @dataProvider invalidInputs
      *
-     * @testWith    [""]
-     *              [null]
+     * @expectedException InvalidArgumentException
      */
     public function ThenAnArgumentExceptionIsThrown($partnerId)
     {
-        $this->expectException(\InvalidArgumentException::class);
-
         $details = new DirectTrackingDetailsBuilder($partnerId, "Order123", "GBP");
         $builtDetails = $details->build();
 
-        $ctor = new TrackingHelper($builtDetails);
+        new TrackingHelper($builtDetails);
+    }
+
+    public function invalidInputs()
+    {
+        return array(
+            array(""),
+            array(null)
+        );
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Unidays;
 
-use PHPUnit\Framework\TestCase;
-
-class WhenVerifyingAValidHashTest extends TestCase
+class WhenVerifyingAValidHashTest extends \PHPUnit_Framework_TestCase
 {
     private $key;
 

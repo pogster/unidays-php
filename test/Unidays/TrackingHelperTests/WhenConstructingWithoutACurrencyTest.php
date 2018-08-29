@@ -2,25 +2,28 @@
 
 namespace Unidays;
 
-use PHPUnit\Framework\TestCase;
-
-class WhenConstructingWithoutACurrencyTest extends TestCase
+class WhenConstructingWithoutACurrencyTest extends \PHPUnit_Framework_TestCase
 {
     /**
- * @test
- *
- * @param $currency
- *
- * @testWith    [""]
- *              [null]
- */
+     * @test
+     *
+     * @dataProvider invalidInputs
+     *
+     * @expectedException InvalidArgumentException
+     */
     public function ThenAnArgumentExceptionIsThrown($currency)
     {
-        $this->expectException(\InvalidArgumentException::class);
-
         $details = new DirectTrackingDetailsBuilder("somePartnerId", "Order123", $currency);
         $builtDetails = $details->build();
 
-        $ctor = new TrackingHelper($builtDetails);
+        new TrackingHelper($builtDetails);
+    }
+
+    public function invalidInputs()
+    {
+        return array(
+            array(""),
+            array(null)
+        );
     }
 }

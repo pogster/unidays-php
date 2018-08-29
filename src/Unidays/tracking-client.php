@@ -18,7 +18,7 @@ class TrackingClient
     private $key;
     private $tracking;
 
-    function __construct(DirectTrackingDetails $DirectTrackingDetails, $key, bool $test = false)
+    function __construct(DirectTrackingDetails $DirectTrackingDetails, $key, $test = null)
     {
         $this->key = $key;
         $this->tracking = new TrackingHelper($DirectTrackingDetails, $test);
