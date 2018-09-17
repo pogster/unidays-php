@@ -116,31 +116,30 @@ A URL will be returned to you, which can then be used to call our API. If succes
 #### Example
 
 ```php
+<?php
+
 use Unidays;
 
-    class Program
-    {
-        // UNiDAYS will provide your partnerId and signingKey. The partnerId GUID needs to be Base64 encoded before passing it to the DirectTrackingDetailsBuilder
-        $partnerId = "somePartnerId";
-        $key = "someSigningKey";
+// UNiDAYS will provide your partnerId and key
+$partnerId = "somePartnerId";
+$key = "someSigningKey";
 
-        $details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
-        $details->withOrderTotal(209.00);
-        $details->withItemsUnidaysDiscount(13.00);
-        $details->withCode('UNI123');
-        $details->withItemsTax(34.50);
-        $details->withShippingGross(5.00);
-        $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
-        $details->withItemsOtherDiscount(10.00);
-        $details->withUnidaysDiscountPercentage(10.00);
-        $details->withNewCustomer(true);
-        $directTrackingDetails = $details->build();
+$details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
+$details->withOrderTotal(209.00);
+$details->withItemsUnidaysDiscount(13.00);
+$details->withCode('UNI123');
+$details->withItemsTax(34.50);
+$details->withShippingGross(5.00);
+$details->withShippingDiscount(3.00);
+$details->withItemsGross(230.00);
+$details->withItemsOtherDiscount(10.00);
+$details->withUnidaysDiscountPercentage(10.00);
+$details->withNewCustomer(true);
+$directTrackingDetails = $details->build();
 
-        $helper = new TrackingHelper($directTrackingDetails);
+$helper = new TrackingHelper($directTrackingDetails);
 
-        $url = $helper->create_server_url($key);
-    }
+$url = $helper->create_server_url($key);
 ```
 
 ### Create Script URL
@@ -172,30 +171,30 @@ A URL will be returned to you which can be placed within a script element on you
 The below example is a request for an unsigned Script URL.
 
 ```php
+<?php
+
 use Unidays;
 
-    class Program
-    {
-        // UNiDAYS will provide your partnerId. The partnerId GUID needs to be Base64 encoded before passing it to the DirectTrackingDetailsBuilder
-        $partnerId = "somePartnerId";
+// UNiDAYS will provide your partnerId and key
+$partnerId = "somePartnerId";
 
-        $details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
-        $details->withOrderTotal(209.00);
-        $details->withItemsUnidaysDiscount(13.00);
-        $details->withCode('UNI123');
-        $details->withItemsTax(34.50);
-        $details->withShippingGross(5.00);
-        $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
-        $details->withItemsOtherDiscount(10.00);
-        $details->withUnidaysDiscountPercentage(10.00);
-        $details->withNewCustomer(true);
-        $directTrackingDetails = $details->build();
+$details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
+$details->withOrderTotal(209.00);
+$details->withItemsUnidaysDiscount(13.00);
+$details->withCode('UNI123');
+$details->withItemsTax(34.50);
+$details->withShippingGross(5.00);
+$details->withShippingDiscount(3.00);
+$details->withItemsGross(230.00);
+$details->withItemsOtherDiscount(10.00);
+$details->withUnidaysDiscountPercentage(10.00);
+$details->withNewCustomer(true);
+$directTrackingDetails = $details->build();
 
-        $helper = new TrackingHelper($directTrackingDetails);
+$helper = new TrackingHelper($directTrackingDetails);
 
-        $url = $helper->create_script_url();
-    }
+$url = $helper->create_script_url();
+
 ```
 
 ### Tracking Client
@@ -216,36 +215,36 @@ A HttpResponseMessage is returned. If successful the response should have a stat
 
 #### Example
 
-The below example sets up some direct tracking details, calls sendRequest on the client and echoes the response to the console.
+The below example sets up some direct tracking details, calls sendRequest on the client and echoes the response code to the console.
 
 ```php
+<?php
+
 use Unidays;
 
-    class Program
-    {
-        // UNiDAYS will provide your partnerId and signingKey. The partnerId GUID needs to be Base64 encoded before passing it to the DirectTrackingDetailsBuilder
-        $partnerId = "somePartnerId";
-        $key = "someSigningKey";
+// UNiDAYS will provide your partnerId and key
+$partnerId = "somePartnerId";
+$key = "someSigningKey";
 
-        $details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
-        $details->withOrderTotal(209.00);
-        $details->withItemsUnidaysDiscount(13.00);
-        $details->withCode('UNI123');
-        $details->withItemsTax(34.50);
-        $details->withShippingGross(5.00);
-        $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
-        $details->withItemsOtherDiscount(10.00);
-        $details->withUnidaysDiscountPercentage(10.00);
-        $details->withNewCustomer(true);
-        $directTrackingDetails = $details->build();
+$details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
+$details->withOrderTotal(209.00);
+$details->withItemsUnidaysDiscount(13.00);
+$details->withCode('UNI123');
+$details->withItemsTax(34.50);
+$details->withShippingGross(5.00);
+$details->withShippingDiscount(3.00);
+$details->withItemsGross(230.00);
+$details->withItemsOtherDiscount(10.00);
+$details->withUnidaysDiscountPercentage(10.00);
+$details->withNewCustomer(true);
+$directTrackingDetails = $details->build();
 
-        $client = new TrackingClient($directTrackingDetails, $key);
+$client = new TrackingClient($directTrackingDetails, $key);
 
-        $response = $client->sendRequest();
+$response = $client->sendRequest();
 
-        echo $response;
-    }
+echo $response->code;
+
 ```
 
 ### Test Endpoint
@@ -259,33 +258,33 @@ The TrackingHelper object, configured in test mode, will add an extra parameter 
 #### Example
 
 ```php
+<?php
+
 use Unidays;
 
-    class Program
-    {
-        // UNiDAYS will provide your partnerId and signingKey. The partnerId GUID needs to be Base64 encoded before passing it to the DirectTrackingDetailsBuilder
-        $partnerId = "somePartnerId";
-        $key = "someSigningKey";
+// UNiDAYS will provide your partnerId and key
+$partnerId = "somePartnerId";
+$key = "someSigningKey";
 
-        $details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
-        $details->withOrderTotal(209.00);
-        $details->withItemsUnidaysDiscount(13.00);
-        $details->withCode('UNI123');
-        $details->withItemsTax(34.50);
-        $details->withShippingGross(5.00);
-        $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
-        $details->withItemsOtherDiscount(10.00);
-        $details->withUnidaysDiscountPercentage(10.00);
-        $details->withNewCustomer(true);
-        $directTrackingDetails = $details->build();
+$details = new DirectTrackingDetailsBuilder($partnerId, 'order123', 'GBP');
+$details->withOrderTotal(209.00);
+$details->withItemsUnidaysDiscount(13.00);
+$details->withCode('UNI123');
+$details->withItemsTax(34.50);
+$details->withShippingGross(5.00);
+$details->withShippingDiscount(3.00);
+$details->withItemsGross(230.00);
+$details->withItemsOtherDiscount(10.00);
+$details->withUnidaysDiscountPercentage(10.00);
+$details->withNewCustomer(true);
+$directTrackingDetails = $details->build();
 
-        // Pass in an aditional argument of true to instantiate the TrackingHelper object in test mode
-        $helper = new TrackingHelper($directTrackingDetails, true);
+// Pass in an aditional argument of true to instantiate the TrackingHelper object in test mode
+$helper = new TrackingHelper($directTrackingDetails, true);
 
-        // The url generated will now contain the appended $Test=True parameter, this url will call our test endpoint
-        $url = $helper->create_server_url($key);
-    }
+// The url generated will now contain the appended $Test=True parameter, this url will call our test endpoint
+$url = $helper->create_server_url($key);
+
 ```
 
 ### Direct Tracking Details Builder
@@ -317,23 +316,23 @@ The final call to be chained is `->build()` which creates the object.
 #### Example
 
 ```php
+<?php
+
 use Unidays;
 
-    class Program
-    {
-        $details = new DirectTrackingDetailsBuilder('somePartnerId', 'order123', 'GBP');
-        $details->withOrderTotal(209.00);
-        $details->withItemsUnidaysDiscount(13.00);
-        $details->withCode('UNI123');
-        $details->withItemsTax(34.50);
-        $details->withShippingGross(5.00);
-        $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
-        $details->withItemsOtherDiscount(10.00);
-        $details->withUnidaysDiscountPercentage(10.00);
-        $details->withNewCustomer(true);
-        $directTrackingDetails = $details->build();
-    }
+$details = new DirectTrackingDetailsBuilder('somePartnerId', 'order123', 'GBP');
+$details->withOrderTotal(209.00);
+$details->withItemsUnidaysDiscount(13.00);
+$details->withCode('UNI123');
+$details->withItemsTax(34.50);
+$details->withShippingGross(5.00);
+$details->withShippingDiscount(3.00);
+$details->withItemsGross(230.00);
+$details->withItemsOtherDiscount(10.00);
+$details->withUnidaysDiscountPercentage(10.00);
+$details->withNewCustomer(true);
+$directTrackingDetails = $details->build();
+
 ```
 
 ## Codeless Verification
@@ -359,21 +358,21 @@ If the method successfully validates the hash of the incoming request, a DateTim
 #### Example
 
 ```php
+<?php
+
 use Unidays;
 
-    class Program
-    {
-        // Your key as provided by UNiDAYS
-        $key = "someSigningKey";
+// Your key as provided by UNiDAYS
+$key = "someSigningKey";
 
-        // Obtain parameters from the query string. Be sure to URL Decode them
-        $ud_s = "Do/faqh330SGgCnn4t3X4g==";
-        $ud_t = "1395741712";
-        $ud_h = "i38dJdX+XLKuE4F5tv+Knpl5NPtu5zrdsjnqBQliJEJE4NkMmfurVnUaT46WluRYoD1/f5spAqU36YgeTMCNeg==";
+// Obtain parameters from the query string. Be sure to URL Decode them
+$ud_s = "Do/faqh330SGgCnn4t3X4g==";
+$ud_t = "1395741712";
+$ud_h = "i38dJdX+XLKuE4F5tv+Knpl5NPtu5zrdsjnqBQliJEJE4NkMmfurVnUaT46WluRYoD1/f5spAqU36YgeTMCNeg==";
 
-        $verifier = new CodelessUrlVerifier($key);
-        $verifiedAt = $verifier->verify_url_params($ud_s, $ud_t, $ud_h);
-    }
+$verifier = new CodelessUrlVerifier($key);
+$verifiedAt = $verifier->verify_url_params($ud_s, $ud_t, $ud_h);
+
 ```
 
 ## Contributing
