@@ -31,7 +31,7 @@ This is the PHP library for integrating with UNiDAYS. This is to be used for cod
 
 ## How to use this code
 
-- Pull the package from [Packagist](). The commands for doing this are displayed on the Packagist page. Please use the most recent version.
+- Pull the package from [Packagist](https://packagist.org/packages/unidays/unidays-php). The commands for doing this are displayed on the Packagist page. Please use the most recent version.
 - See the example usage section for the type of call you intend to use. Each of these contains an example.
 
 ## Direct Tracking
