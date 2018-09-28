@@ -27,13 +27,16 @@ class TrackingClient
     /**
      * Sends a Server-to-Server Redemption Tracking Request
      *
-     * @return \Httpful\Response HttpResponseMessage of the resulting call
+     * @link http://phphttpclient.com/ Documentation for HTTP-Client library
+     * @return \Httpful\Response Http Response object of the resulting call
      * @throws \Httpful\Exception\ConnectionErrorException Throws exception if a connection cannot be established
      */
     public function sendRequest()
     {
         $url = $this->tracking->create_server_url($this->key);
-        $response = \Httpful\Request::post($url)->send();
+        $response = \Httpful\Request::post($url)
+                                    ->addHeader("User-Agent", "unidays-php-client-library/1.2")
+                                    ->send();
 
         return $response;
     }
