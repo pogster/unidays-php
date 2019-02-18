@@ -2,11 +2,11 @@
 
 namespace Unidays;
 
-class WhenRequestingAServerUrlWithSomeParamsSetTest extends \PHPUnit_Framework_TestCase
+class WhenRequestingAServerUrlWithSomeParamsSetTest extends TestCaseBase
 {
     var $url;
 
-    public function setUp()
+    public function initialise()
     {
         $details = new DirectTrackingDetailsBuilder('a partner', 'the transaction', 'GBP');
         $builtDetails = $details->build();

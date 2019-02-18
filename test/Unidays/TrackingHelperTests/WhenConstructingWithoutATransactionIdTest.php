@@ -2,17 +2,17 @@
 
 namespace Unidays;
 
-class WhenConstructingWithoutATransactionIdTest extends \PHPUnit_Framework_TestCase
+class WhenConstructingWithoutATransactionIdTest extends TestCaseBase
 {
     /**
      * @test
      *
      * @dataProvider invalidInputs
-     *
-     * @expectedException InvalidArgumentException
      */
     public function ThenAnArgumentExceptionIsThrown($transactionId)
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $details = new DirectTrackingDetailsBuilder("somePartnerId", $transactionId, "GBP");
         $builtDetails = $details->build();
 
