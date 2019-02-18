@@ -8,11 +8,11 @@ class WhenConstructingWithoutATransactionIdTest extends TestCaseBase
      * @test
      *
      * @dataProvider invalidInputs
-     *
-     * @expectedException InvalidArgumentException
      */
     public function ThenAnArgumentExceptionIsThrown($transactionId)
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $details = new DirectTrackingDetailsBuilder("somePartnerId", $transactionId, "GBP");
         $builtDetails = $details->build();
 

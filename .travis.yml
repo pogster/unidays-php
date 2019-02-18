@@ -1,17 +1,13 @@
 language: php
 php:
-- '7.2'
-- '7.1'
-- '7.0'
-- '5.6'
-matrix:
-  include:
-  - php: '5.3'
-    dist: precise
+    - "7.2"
+    - "7.1"
+    - "7.0"
+    - "5.6"
 install:
-- composer install --no-dev
+    - composer install --no-dev
 notifications:
-  slack:
-    secure: DBrOkXTohMdiU7kZyjL8rXbGSzI1WimlaH/1tk9it2+wM8RkM14qkkOrdcEiBdRGJmoZ2h0KYrCMgTbT/onyAjfm1FIOgSmSkziIskS6N/w95FoNpnpD3SR4cXFAKLo1wtxImsvHXac745rNxLGy24yOqoy8ToBMhsBSdxBNoUyavLtfnWjCdgrsFzTgItztGSHqUbeOHLXhG3FG0Cb91nIoNLNtiQfC1Ut2tj5ALHeqrrd6kvpFxBeljQohZXxVJ1/xMtr/aomX2sMjsTwygcoYBr922wSLOWuR6d7wKd7Xk0BR85Ji5cJEz8HUOk6QdHj3Lr/SR1r9l50FYJ6EXOE0GFkbc039zHHP+i0PgyN4weJtafOqgLJQesTQP8CM17iLsQs3ufSz8uMtajPWMyEbEyrkR0Rr/w1YCGENizlNTn5KAjVcHC5UQatnTYS1w//u4zj65S9mk7QEkKG7Szo+SD1V4BSo+8hH5YBtkETqcad4cKTeGOK5WUeXlVD33aNY5oNY6mrsbGwPGYsYQqv4L+WTHZunKntpU7dpINylMlDG4iUeWghpqPiAnZQnpmcSE1c53iX/nRgjkcnhjFoJcB2LbvgrFtOyMvSMnNWV8cC3b33kFmvaCFMxi6gTv/xRbqqypdT7jhWrBbamojdgvzHxxqmk05ylWtBcDLY=
-    on_success: never
-    on_failure: always
+    slack:
+        secure: DBrOkXTohMdiU7kZyjL8rXbGSzI1WimlaH/1tk9it2+wM8RkM14qkkOrdcEiBdRGJmoZ2h0KYrCMgTbT/onyAjfm1FIOgSmSkziIskS6N/w95FoNpnpD3SR4cXFAKLo1wtxImsvHXac745rNxLGy24yOqoy8ToBMhsBSdxBNoUyavLtfnWjCdgrsFzTgItztGSHqUbeOHLXhG3FG0Cb91nIoNLNtiQfC1Ut2tj5ALHeqrrd6kvpFxBeljQohZXxVJ1/xMtr/aomX2sMjsTwygcoYBr922wSLOWuR6d7wKd7Xk0BR85Ji5cJEz8HUOk6QdHj3Lr/SR1r9l50FYJ6EXOE0GFkbc039zHHP+i0PgyN4weJtafOqgLJQesTQP8CM17iLsQs3ufSz8uMtajPWMyEbEyrkR0Rr/w1YCGENizlNTn5KAjVcHC5UQatnTYS1w//u4zj65S9mk7QEkKG7Szo+SD1V4BSo+8hH5YBtkETqcad4cKTeGOK5WUeXlVD33aNY5oNY6mrsbGwPGYsYQqv4L+WTHZunKntpU7dpINylMlDG4iUeWghpqPiAnZQnpmcSE1c53iX/nRgjkcnhjFoJcB2LbvgrFtOyMvSMnNWV8cC3b33kFmvaCFMxi6gTv/xRbqqypdT7jhWrBbamojdgvzHxxqmk05ylWtBcDLY=
+        on_success: never
+        on_failure: always

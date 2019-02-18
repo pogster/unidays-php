@@ -8,11 +8,11 @@ class WhenConstructingWithoutACurrencyTest extends TestCaseBase
      * @test
      *
      * @dataProvider invalidInputs
-     *
-     * @expectedException InvalidArgumentException
      */
     public function ThenAnArgumentExceptionIsThrown($currency)
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $details = new DirectTrackingDetailsBuilder("somePartnerId", "Order123", $currency);
         $builtDetails = $details->build();
 
