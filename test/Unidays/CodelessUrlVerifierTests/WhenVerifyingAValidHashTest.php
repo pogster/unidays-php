@@ -2,11 +2,11 @@
 
 namespace Unidays;
 
-class WhenVerifyingAValidHashTest extends \PHPUnit_Framework_TestCase
+class WhenVerifyingAValidHashTest extends TestCaseBase
 {
     private $key;
 
-    public function setUp()
+    public function initialise()
     {
         $this->key = 'tnFUmqDkq1w9eT65hF9okxL1On+d2BQWUyOFLYE3FTOwHjmnt5Sh/sxMA3/i0od3pV5EBfSAmXo//fjIdAE3cIAatX7ZZqVi0Dr8qEYGtku+ZRVbPSmTcEUTA/gXYo3KyL2JqXaZ/qhUvCMbLWyV07qRiFOjyLdOWhioHlJM5io=';
     }

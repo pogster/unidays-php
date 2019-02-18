@@ -2,7 +2,7 @@
 
 namespace Unidays;
 
-class WhenConstructingWithoutATransactionIdTest extends \PHPUnit_Framework_TestCase
+class WhenConstructingWithoutATransactionIdTest extends TestCaseBase
 {
     /**
      * @test

@@ -2,7 +2,7 @@
 
 namespace Unidays;
 
-class WhenConstructingWithAnInvalidPartnerIdTest extends \PHPUnit_Framework_TestCase
+class WhenConstructingWithAnInvalidPartnerIdTest extends TestCaseBase
 {
     /**
      * @test

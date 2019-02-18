@@ -2,7 +2,7 @@
 
 namespace Unidays;
 
-class WhenConstructingWithAnInvalidKeyTest extends \PHPUnit_Framework_TestCase
+class WhenConstructingWithAnInvalidKeyTest extends TestCaseBase
 {
     /**
      * @test

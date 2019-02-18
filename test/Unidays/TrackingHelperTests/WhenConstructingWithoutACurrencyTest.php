@@ -2,7 +2,7 @@
 
 namespace Unidays;
 
-class WhenConstructingWithoutACurrencyTest extends \PHPUnit_Framework_TestCase
+class WhenConstructingWithoutACurrencyTest extends TestCaseBase
 {
     /**
      * @test
