@@ -2,11 +2,11 @@
 
 namespace Unidays;
 
-class WhenRequestingAServerUrlWithAllParamsSetTest extends \PHPUnit_Framework_TestCase
+class WhenRequestingAServerUrlWithAllParamsSetTest extends TestCaseBase
 {
     var $url;
 
-    public function setUp()
+    public function initialise()
     {
         $details = new DirectTrackingDetailsBuilder('a partner Id', 'the transaction id', 'GBP');
         $details->withOrderTotal(209.00);
@@ -15,7 +15,7 @@ class WhenRequestingAServerUrlWithAllParamsSetTest extends \PHPUnit_Framework_Te
         $details->withItemsTax(34.50);
         $details->withShippingGross(5.00);
         $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
+        $details->withItemsGross(1000.00);
         $details->withItemsOtherDiscount(10.00);
         $details->withUnidaysDiscountPercentage(10.00);
         $details->withNewCustomer(true);
@@ -69,11 +69,11 @@ class WhenRequestingAServerUrlWithAllParamsSetTest extends \PHPUnit_Framework_Te
      *              ["ItemsTax", "34.50"]
      *              ["ShippingGross", "5.00"]
      *              ["ShippingDiscount", "3.00"]
-     *              ["ItemsGross", "230.00"]
+     *              ["ItemsGross", "1000.00"]
      *              ["ItemsOtherDiscount", "10.00"]
      *              ["UNiDAYSDiscountPercentage", "10.00"]
      *              ["NewCustomer", "True"]
-     *              ["Signature", "VsP++N2PQ7Jy/hH6wjkVcGRLRkqpyBFyZPCLW7u0UYuXiYvBlggi4SgCQ1GPs5mg3JswBYms8qTwRehFpWhhAg=="]
+     *              ["Signature", "fx9sLAiZC+a+dvUcOFNhu4Ja31EgaX17m99y/m5BjlKS3NCMBbMouNPJ7MZCHqIUN0x66yz1z3Q5OB57vT7cgQ=="]
      */
     public function TheParameterShouldBeCorrect($parameter, $result)
     {

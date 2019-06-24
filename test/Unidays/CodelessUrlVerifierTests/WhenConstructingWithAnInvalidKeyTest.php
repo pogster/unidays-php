@@ -2,18 +2,19 @@
 
 namespace Unidays;
 
-class WhenConstructingWithAnInvalidKeyTest extends \PHPUnit_Framework_TestCase
+class WhenConstructingWithAnInvalidKeyTest extends TestCaseBase
 {
+
     /**
      * @test
      *
      * @dataProvider invalidInputs
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Key cannot be null or empty
      */
     public function ThenAnArgumentExceptionIsThrown($key)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Key cannot be null or empty");
+
         new CodelessUrlVerifier($key);
     }
 

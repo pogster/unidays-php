@@ -2,11 +2,11 @@
 
 namespace Unidays;
 
-class WhenRequestingAScriptUrlWithAllParamsSetTest extends \PHPUnit_Framework_TestCase
+class WhenRequestingAScriptUrlWithAllParamsSetTest extends TestCaseBase
 {
     var $url;
 
-    public function setUp()
+    public function initialise()
     {
         $details = new DirectTrackingDetailsBuilder('somePartnerId', 'order123', 'GBP');
         $details->withOrderTotal(209.00);
@@ -15,7 +15,7 @@ class WhenRequestingAScriptUrlWithAllParamsSetTest extends \PHPUnit_Framework_Te
         $details->withItemsTax(34.50);
         $details->withShippingGross(5.00);
         $details->withShippingDiscount(3.00);
-        $details->withItemsGross(230.00);
+        $details->withItemsGross(1000.00);
         $details->withItemsOtherDiscount(10.00);
         $details->withUnidaysDiscountPercentage(10.00);
         $details->withNewCustomer(true);
@@ -67,7 +67,7 @@ class WhenRequestingAScriptUrlWithAllParamsSetTest extends \PHPUnit_Framework_Te
      *              ["ItemsTax", "34.50"]
      *              ["ShippingGross", "5.00"]
      *              ["ShippingDiscount", "3.00"]
-     *              ["ItemsGross", "230.00"]
+     *              ["ItemsGross", "1000.00"]
      *              ["ItemsOtherDiscount", "10.00"]
      *              ["UNiDAYSDiscountPercentage", "10.00"]
      *              ["NewCustomer", "True"]
